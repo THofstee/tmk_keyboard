@@ -110,6 +110,7 @@ enum action_kind_id {
     /* Other Keys */
     ACT_USAGE           = 0b0100,
     ACT_MOUSEKEY        = 0b0101,
+    // ACT_TAP             = 0b0110,
     /* Layer Actions */
     ACT_LAYER           = 0b1000,
     ACT_LAYER_TAP       = 0b1010, /* Layer  0-15 */

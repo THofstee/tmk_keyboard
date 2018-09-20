@@ -1,4 +1,6 @@
 TARGET = hhkb_rn42_unimap
 UNIMAP_ENABLE = yes
+KEYMAP = hofstee
 KEYMAP_SECTION_ENABLE = yes
+CONSOLE_ENABLE = yes
 include Makefile.rn42

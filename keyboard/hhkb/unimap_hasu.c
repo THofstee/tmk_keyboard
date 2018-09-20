@@ -52,7 +52,7 @@ const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] PROGMEM = {
     ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSLS,GRV ,
     TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,     BSPC,
     LCTL,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,          ENT_,
-    LSFT,     Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLS2,     RSFT,L1,
+    LPRN,     Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLS2,     RSFT,L1,
          LGUI,LALT,               SPC4,                    RALT,RGUI),
 
     [1] = UNIMAP_HHKB(

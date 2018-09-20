@@ -212,6 +212,8 @@ void process_action(keyrecord_t *record)
             }
             break;
 #endif
+        // case ACT_TAP:
+        //     break;
 #ifndef NO_ACTION_LAYER
         case ACT_LAYER:
             if (action.layer_bitop.on == 0) {
@@ -533,6 +535,10 @@ void clear_keyboard_but_mods(void)
     host_system_send(0);
     host_consumer_send(0);
 #endif
+}
+
+void layer_switch(uint8_t new_layer) {
+    layer_move(new_layer);
 }
 
 bool is_tap_key(keyevent_t event)

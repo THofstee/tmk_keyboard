@@ -298,16 +298,17 @@ DEBUG_HOST = localhost
 
 # Define programs and commands.
 SHELL = sh
-CC = avr-gcc
-OBJCOPY = avr-objcopy
-OBJDUMP = avr-objdump
-SIZE = avr-size
-AR = avr-ar rcs
-NM = avr-nm
+CC = D:/scratch/kb/avr8-gnu-toolchain-win32_x86/bin/avr-gcc
+OBJCOPY = D:/scratch/kb/avr8-gnu-toolchain-win32_x86/bin/avr-objcopy
+OBJDUMP = D:/scratch/kb/avr8-gnu-toolchain-win32_x86/bin/avr-objdump
+SIZE = D:/scratch/kb/avr8-gnu-toolchain-win32_x86/bin/avr-size
+AR = D:/scratch/kb/avr8-gnu-toolchain-win32_x86/bin/avr-ar rcs
+NM = D:/scratch/kb/avr8-gnu-toolchain-win32_x86/bin/avr-nm
 REMOVE = rm -f
 REMOVEDIR = rmdir
 COPY = cp
 WINSHELL = cmd
+DFU_PROGRAMMER = D:/scratch/kb/dfu_programmer/dfu-programmer
 
 
 # Define Messages
@@ -420,20 +421,20 @@ flip: $(TARGET).hex
 	batchisp -hardware usb -device $(MCU) -operation start reset 0
 
 dfu: $(TARGET).hex
-	@echo -n dfu-programmer: waiting
-	@until dfu-programmer $(MCU) get bootloader-version > /dev/null 2>&1; do \
+	@echo -n $(DFU_PROGRAMMER): waiting
+	@until $(DFU_PROGRAMMER) $(MCU) get bootloader-version > /dev/null 2>&1; do \
 		echo  -n "."; \
 		sleep 1; \
 	done
 	@echo
 
-	dfu-programmer $(MCU) erase --force
-	dfu-programmer $(MCU) flash $(TARGET).hex
-	dfu-programmer $(MCU) reset
+	$(DFU_PROGRAMMER) $(MCU) erase --force
+	$(DFU_PROGRAMMER) $(MCU) flash $(TARGET).hex
+	$(DFU_PROGRAMMER) $(MCU) reset
 	
 dfu-start:
-	dfu-programmer $(MCU) reset
-	dfu-programmer $(MCU) start
+	$(DFU_PROGRAMMER) $(MCU) reset
+	$(DFU_PROGRAMMER) $(MCU) start
 
 flip-ee: $(TARGET).hex $(TARGET).eep
 	$(COPY) $(TARGET).eep $(TARGET)eep.hex
@@ -443,8 +444,8 @@ flip-ee: $(TARGET).hex $(TARGET).eep
 	$(REMOVE) $(TARGET)eep.hex
 
 dfu-ee: $(TARGET).hex $(TARGET).eep
-	dfu-programmer $(MCU) flash --eeprom $(TARGET).eep
-	dfu-programmer $(MCU) reset
+	$(DFU_PROGRAMMER) $(MCU) flash --eeprom $(TARGET).eep
+	$(DFU_PROGRAMMER) $(MCU) reset
 
 
 # Generate avr-gdb config/init file which does the following:
